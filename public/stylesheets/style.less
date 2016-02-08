@@ -1,0 +1,53 @@
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+.markdown-body > blockquote:before {
+    position: absolute;
+    left: 0;
+    content: '';
+}
+.markdown-body > blockquote:after {
+    position: absolute;
+    left: 0;
+    content: '';
+}
+.snippets > .mdl-card {
+    min-width: 200px;
+    max-width: 980px;
+    width: 80%;
+    margin: 10px auto;
+}
+.mdl-card > pre {
+    margin: 0px;
+}
+.mdl-card #btn-star {
+    color: #fff;
+}
+.mdl-card #btn-star.active {
+    color: #ff0;
+}
+@media all and (min-width: 840px) {
+    .mdl-show--phone {
+        display: none;
+    }
+}
+@media all and (max-width: 840px) and (min-width: 480px) {
+    .mdl-show--phone {
+        display: none;
+    }
+}
+@media all and (max-width: 480px) {
+    .markdown-body {
+        padding: 15px 5px;
+    }
+    .snippets > .mdl-card {
+        width: 95%;
+    }
+    .mdl-hide--phone {
+        display: none;
+    }
+}

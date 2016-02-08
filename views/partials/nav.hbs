@@ -1,0 +1,48 @@
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Code Snippets</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-hide--phone mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Home</a>
+            <a class="mdl-navigation__link" href="/snippet/demo">Demo</a>
+            <a class="mdl-navigation__link" href="/about">About</a>
+        </nav>
+        <form class="mdl-hide--phone" action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder mdl-color--white mdl-color-text--black">
+                    <input class="mdl-textfield__input" type="text" id="search" autocomplete="off">
+                    <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                </div>
+            </div>
+        </form>
+        {{#if user}}
+        <span class="header-username" style="margin-left: 20px;">{{user.name}}</span>
+        <button id="menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-lower-right">
+            <li class="mdl-menu__item mdl-show--phone">Home</li>
+            <li class="mdl-menu__item mdl-show--phone">Demo</li>
+            <li class="mdl-menu__item mdl-show--phone">About</li>
+            <li class="mdl-menu__item">My snippets</li>
+            <li class="mdl-menu__item">Personal Center</li>
+            <li class="mdl-menu__item">Log out</li>
+        </ul>
+        {{/if}}
+    </div>
+</header>
+<div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Title</span>
+    <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+</div>
