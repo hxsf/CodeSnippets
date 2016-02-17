@@ -1,12 +1,324 @@
 <form action="/users/new" method="post">
-    <input type="text" name="title" autocomplete="off" required="required" />
-    <textarea name="remark" rows="10" cols="80" resize="noresize"></textarea>
-    <textarea name="codes" rows="10" cols="80" resize="noresize"></textarea>
-    <textarea name="codes" rows="10" cols="80" resize="noresize"></textarea>
-    <textarea name="codes" rows="10" cols="80" resize="noresize"></textarea>
-    <input type="submit" value="submit" />
+    <div class="snippets">
+        {{#if user}}
+        <div class="mdl-card title-card mdl-shadow--8dp">
+            <div class="mdl-card__title mdl-color--blue">
+                <h2 class="mdl-card__title-text mdl-color-text--white">
+                    <input class="mdl-textfield__input mdl-color-text--white" id="title" type="text" name="title" autocomplete="off" required="required" placeholder="Input title" />
+                </h2>
+            </div>
+            <div class="mdl-card__supporting-text" id="item-remark">
+                <div class="tabs">
+                    <textarea class="item-editor tab-item mdl-textfield__input" name="remark" class="mdl-textfield__input" placeholder="Input remarks" required="required" autocomplete="off"></textarea>
+                    <div class="item-preview tab-item markdown-body">
+                        here is perview
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-perview" type="button" data-upgraded=",MaterialButton,MaterialRipple">
+                    <i class="material-icons">format_textdirection_l_to_r</i>
+                    <span class="mdl-button__ripple-container">
+                        <span class="mdl-ripple is-animating" style="width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(20px, 20px);"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="mdl-card code-card mdl-shadow--8dp">
+            <!-- <pre><code class="hljs"></code></pre> -->
+            <div class="code-item">
+                <div class="mdl-card__title mdl-card--expand mdl-card--border">
+                    <select class="mdl-card__title-text mdl-textfield__input" required="required">
+                        <option value="option" selected="selected">Auto</option>
+                        <option value="1c">1C</option>
+                        <option value="accesslog">Access log</option>
+                        <option value="actionscript">ActionScript</option>
+                        <option value="apache">Apache</option>
+                        <option value="applescript">AppleScript</option>
+                        <option value="arduino">Arduino</option>
+                        <option value="armasm">ARM Assembly</option>
+                        <option value="asciidoc">AsciiDoc</option>
+                        <option value="aspectj">AspectJ</option>
+                        <option value="autohotkey">AutoHotkey</option>
+                        <option value="autoit">AutoIt</option>
+                        <option value="avrasm">AVR Assembler</option>
+                        <option value="axapta">Axapta</option>
+                        <option value="bash">Bash</option>
+                        <option value="basic">Basic</option>
+                        <option value="brainfuck">Brainfuck</option>
+                        <option value="cal">C/AL</option>
+                        <option value="capnproto">Cap’n Proto</option>
+                        <option value="ceylon">Ceylon</option>
+                        <option value="clojure-repl">Clojure REPL</option>
+                        <option value="clojure">Clojure</option>
+                        <option value="cmake">CMake</option>
+                        <option value="coffeescript">CoffeeScript</option>
+                        <option value="cos">Caché Object Script</option>
+                        <option value="cpp">C++</option>
+                        <option value="crmsh">crmsh</option>
+                        <option value="crystal">Crystal</option>
+                        <option value="cs">C#</option>
+                        <option value="css">CSS</option>
+                        <option value="d">D</option>
+                        <option value="dart">Dart</option>
+                        <option value="delphi">Delphi</option>
+                        <option value="diff">Diff</option>
+                        <option value="django">Django</option>
+                        <option value="dns">DNS Zone file</option>
+                        <option value="dockerfile">Dockerfile</option>
+                        <option value="dos">DOS .bat</option>
+                        <option value="dts">Device Tree (*.dts)</option>
+                        <option value="dust">Dust</option>
+                        <option value="elixir">Elixir</option>
+                        <option value="elm">Elm</option>
+                        <option value="erb">ERB (Embedded Ruby)</option>
+                        <option value="erlang-repl">Erlang REPL</option>
+                        <option value="erlang">Erlang</option>
+                        <option value="fix">FIX</option>
+                        <option value="fortran">Fortran</option>
+                        <option value="fsharp">F#</option>
+                        <option value="gams">GAMS</option>
+                        <option value="gauss">GAUSS</option>
+                        <option value="gcode">G-code (ISO 6983)</option>
+                        <option value="gherkin">Gherkin</option>
+                        <option value="glsl">GLSL</option>
+                        <option value="go">Go</option>
+                        <option value="golo">Golo</option>
+                        <option value="gradle">Gradle</option>
+                        <option value="groovy">Groovy</option>
+                        <option value="haml">Haml</option>
+                        <option value="handlebars">Handlebars</option>
+                        <option value="haskell">Haskell</option>
+                        <option value="haxe">Haxe</option>
+                        <option value="hsp">HSP</option>
+                        <option value="http">HTTP</option>
+                        <option value="inform7">Inform 7</option>
+                        <option value="ini">Ini</option>
+                        <option value="irpf90">IRPF90</option>
+                        <option value="java">Java</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="json">JSON</option>
+                        <option value="julia">Julia</option>
+                        <option value="kotlin">Kotlin</option>
+                        <option value="lasso">Lasso</option>
+                        <option value="less">Less</option>
+                        <option value="lisp">Lisp</option>
+                        <option value="livecodeserver">LiveCode</option>
+                        <option value="livescript">LiveScript</option>
+                        <option value="lua">Lua</option>
+                        <option value="makefile">Makefile</option>
+                        <option value="markdown">Markdown</option>
+                        <option value="mathematica">Mathematica</option>
+                        <option value="matlab">Matlab</option>
+                        <option value="mel">MEL</option>
+                        <option value="mercury">Mercury</option>
+                        <option value="mipsasm">MIPS Assembly</option>
+                        <option value="mizar">Mizar</option>
+                        <option value="mojolicious">Mojolicious</option>
+                        <option value="monkey">Monkey</option>
+                        <option value="nginx">Nginx</option>
+                        <option value="nimrod">Nimrod</option>
+                        <option value="nix">Nix</option>
+                        <option value="nsis">NSIS</option>
+                        <option value="objectivec">Objective-C</option>
+                        <option value="ocaml">OCaml</option>
+                        <option value="openscad">OpenSCAD</option>
+                        <option value="oxygene">Oxygene</option>
+                        <option value="parser3">Parser3</option>
+                        <option value="perl">Perl</option>
+                        <option value="pf">pf</option>
+                        <option value="php">PHP</option>
+                        <option value="powershell">PowerShell</option>
+                        <option value="processing">Processing</option>
+                        <option value="profile">Python profile</option>
+                        <option value="prolog">Prolog</option>
+                        <option value="protobuf">Protocol Buffers</option>
+                        <option value="puppet">Puppet</option>
+                        <option value="python">Python</option>
+                        <option value="q">Q</option>
+                        <option value="r">R</option>
+                        <option value="rib">RenderMan RIB</option>
+                        <option value="roboconf">Roboconf</option>
+                        <option value="rsl">RenderMan RSL</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="ruleslanguage">Oracle Rules Language</option>
+                        <option value="rust">Rust</option>
+                        <option value="scala">Scala</option>
+                        <option value="scheme">Scheme</option>
+                        <option value="scilab">Scilab</option>
+                        <option value="scss">SCSS</option>
+                        <option value="smali">Smali</option>
+                        <option value="smalltalk">Smalltalk</option>
+                        <option value="sml">SML</option>
+                        <option value="sqf">SQF</option>
+                        <option value="sql">SQL</option>
+                        <option value="stan">Stan</option>
+                        <option value="stata">Stata</option>
+                        <option value="step21">STEP Part 21</option>
+                        <option value="stylus">Stylus</option>
+                        <option value="swift">Swift</option>
+                        <option value="tcl">Tcl</option>
+                        <option value="tex">TeX</option>
+                        <option value="thrift">Thrift</option>
+                        <option value="tp">TP</option>
+                        <option value="twig">Twig</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="vala">Vala</option>
+                        <option value="vbnet">VB.NET</option>
+                        <option value="vbscript-html">VBScript in HTML</option>
+                        <option value="vbscript">VBScript</option>
+                        <option value="verilog">Verilog</option>
+                        <option value="vhdl">VHDL</option>
+                        <option value="vim">Vim Script</option>
+                        <option value="x86asm">Intel x86 Assembly</option>
+                        <option value="xl">XL</option>
+                        <option value="xml">HTML, XML</option>
+                        <option value="xquery">XQuery</option>
+                        <option value="yaml">YAML</option>
+                        <option value="zephir">Zephir</option>
+                    </select>
+                </div>
+                <textarea name="codes" class="mdl-textfield__input" placeholder="Copy codes in here." required="required" autocomplete="off"></textarea>
+            </div>
+            <div class="mdl-card__actions mdl-card--border" id="code-insert">
+                <button type="button" id="btn-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                    Add one more
+                </button>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Submit
+                </button>
+            </div>
+        </div>
+        {{else}}
+        <div class="mdl-card title-card mdl-shadow--8dp">
+            <div class="mdl-card__title mdl-color--blue">
+                <h2 class="mdl-card__title-text mdl-color-text--white">未登陆</h2>
+            </div>
+            <div class="mdl-card__supporting-text markdown-body">
+                登陆才能保持历史代码段哦。
+            </div>
+            <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" id="btn-star" data-upgraded=",MaterialButton,MaterialRipple">
+                    <i class="material-icons">star</i>
+                    <span class="mdl-button__ripple-container">
+                        <span class="mdl-ripple is-animating" style="width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(20px, 20px);"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <a class="mdl-button" href="/login">Login Now</a>
+        {{/if}}
+    </div>
 </form>
-<style media="screen">
+<style>
     form > input {width: 500px;}
     form > * {display: block;margin: 10px auto;}
+    .title-card h2 {width: calc(100% - 48px);}
+    #title {padding: 0px 3px;width: 100%;}
+    #title::-webkit-input-placeholder { /* WebKit browsers */
+        color: #ddd;
+    }
+    #title:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #ddd;
+    }
+    #title::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #ddd;
+    }
+    #title:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #ddd;
+    }
+    .title-card > .mdl-card__menu {
+        top: 10px;
+    }
+    .code-card textarea {
+        width: 100%;
+        height: 200px;
+        margin: 0px auto;
+        padding: 15px;
+        resize: none;
+        font-family: monospace;
+        box-sizing: border-box;
+    }
+    #item-remark {
+        position: relative;
+        width: 100%!important;
+        padding: 0px!important;
+        height: 150px;
+    }
+    #item-remark > div.tabs {
+        overflow: hidden;
+        width: 200%;
+        position: relative;
+        /*left: -100%;*/
+    }
+    #item-remark > div.tabs > .tab-item {
+        float: left;
+        width: 50%;
+        min-height: 150px;
+        padding: 15px;
+        box-sizing: border-box;
+        resize: none;
+        overflow-y: auto;
+    }
 </style>
+
+{{> footer}}
+<script src="/javascripts/jquery-2.2.0.min.js" charset="utf-8"></script>
+<script src="/javascripts/marked.js?123" charset="utf-8"></script>
+<script src="/javascripts/highlight.pack.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var icon = $('#btn-perview > .material-icons');
+        var panel = $('#item-remark');
+        var tabs = panel.find('.tabs');
+        var editor = tabs.find('.item-editor');
+        var perview = tabs.find('.item-preview');
+        var panelH = panel.height();
+        var renderer = new marked.Renderer();
+        renderer.html = function(html){
+            return '<p>For security, we don\'t support HTML Tags. If you save, this line will be removed.</p>';
+        };
+        marked.setOptions({
+            renderer: renderer,
+            gfm: true,
+            tables: true,
+            breaks: true,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false
+        });
+        $('#btn-perview').on('click', function () {
+            if (icon.text()=='format_textdirection_l_to_r') {
+                icon.text('format_textdirection_r_to_l');
+                perview.html(marked(editor.val()));
+
+                tabs.animate({left:'-100%'}, function() {
+                    var h = perview.height() + 30;
+                    h = (h > panelH)?h:panelH;
+                    panel.animate({height: h+'px'});
+                });
+            } else {
+                icon.text('format_textdirection_l_to_r');
+                panel.animate({height: panelH+'px'}, 100,function() {
+                    tabs.animate({left:'0px'}, 500, function () {
+                        perview.html('');
+                    });
+                });
+            }
+        });
+        // add one more code snippet
+        var _code = $('.code-item').clone();
+        _code.find('textarea').val('');
+        console.log(_code);
+        var code_insert = $('#code-insert');
+        $('#btn-add').on('click', function() {
+            var lastcode = code_insert.prev().find('textarea');
+            if (lastcode.val() != '') {
+                code_insert.before(_code.clone());
+            } else {
+                alert('Can\'t add a snippet without content!');
+            }
+        });
+    });
+</script>

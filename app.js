@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jwt = require('express-jwt');
+var unless = require('express-unless');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -25,9 +27,17 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
+// app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+var statics = express.static(path.join(__dirname, 'public'));
+statics.unless = unless;
+app.use(statics);
+
+
+// JsonWebTokens
+// app.use(jwt({secret: 'codesnippets'}).unless({path: ['/auth', '/login']}));
+
 
 app.use('/', routes);
 app.use('/users', users);
