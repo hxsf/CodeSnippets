@@ -1,0 +1,92 @@
+<div class="snippets mainbody">
+    <div class="mdl-card title-item mdl-shadow--8dp">
+        <div class="mdl-card__title mdl-color--blue">
+            <h2 class="mdl-card__title-text mdl-color-text--white">自己写的 ajax 渲染的markdown解析器(标题)</h2>
+        </div>
+        <div class="mdl-card__supporting-text markdown-body">
+            <h3 id="-">此处为说明性文本。</h3>
+            <p>支持 <a href="/about#markdown">markdown语法</a></p>
+            <blockquote>
+                <p>author: hxsf@ihxsf.com</p>
+            </blockquote>
+            <h2 id="-">效果</h2>
+            <p><img src="http://7u2h54.com1.z0.glb.clouddn.com/democodesnippets.gif" alt="demo"></p>
+            <h2 id="-">实现</h2>
+            <p>通过父元素的 <code>overflow: hidden</code> 来隐藏 <code>tabs</code> 中多余部分。</p>
+
+        </div>
+        
+    </div>
+    <div class="mdl-card code-item mdl-shadow--8dp">
+        <pre><code class="hljs">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"work-panel"</span>&gt;
+    &lt;button type=<span class="hljs-string">"button"</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"toggle-switch"</span>&gt;preview&lt;/button&gt;
+    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"switch"</span>&gt;
+        &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"item editor"</span>&gt;
+            &lt;textarea placeholder=<span class="hljs-string">"some codes in here"</span> required&gt;&lt;/textarea&gt;
+        &lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">"item perview"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+    &lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;</code></pre>
+    </div>
+    <div class="mdl-card code-item mdl-shadow--8dp">
+        <pre><code class="hljs"><span class="hljs-selector-class">.work-panel</span> {
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;
+    <span class="hljs-attribute">overflow</span>: hidden;
+}
+<span class="hljs-selector-class">.work-panel</span> &gt; <span class="hljs-selector-class">.toggle-switch</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0px</span>;
+    <span class="hljs-attribute">right</span>: <span class="hljs-number">0px</span>;
+    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">999</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">32px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">32px</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">16px</span>;
+    <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'switch.png'</span>);
+}
+<span class="hljs-selector-class">.work-panel</span> &gt; <span class="hljs-selector-class">.switch</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0px</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0px</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">200%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;
+}
+<span class="hljs-selector-class">.work-panel</span> &gt; <span class="hljs-selector-class">.switch</span> &gt; <span class="hljs-selector-class">.item</span> {
+    <span class="hljs-attribute">float</span>: left;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;
+}
+<span class="hljs-selector-class">.work-panel</span> <span class="hljs-selector-id">#editor</span> {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;
+    <span class="hljs-attribute">resize</span>: none;
+}</code></pre>
+    </div>
+    <div class="mdl-card code-item mdl-shadow--8dp">
+        <pre><code class="hljs">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-string">'.btn-toggle'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
+        event.preventDefault();
+        <span class="hljs-keyword">var</span> icon = $(<span class="hljs-keyword">this</span>);
+        <span class="hljs-keyword">var</span> tabs = $(<span class="hljs-string">'.tabs'</span>);
+        <span class="hljs-keyword">var</span> editor = tabs.find(<span class="hljs-string">'.item.editor'</span>);
+        <span class="hljs-keyword">var</span> perview = tabs.find(<span class="hljs-string">'.item.preview'</span>);
+        <span class="hljs-keyword">if</span> (icon.text()==<span class="hljs-string">'perview'</span>) {
+            $.post(<span class="hljs-string">'/render'</span>, {src: editor.val()}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, textStatus, xhr</span>) </span>{
+                icon.text(<span class="hljs-string">'edit'</span>);
+                perview.html(marked(data.content));
+
+                tabs.animate({left:<span class="hljs-string">'-100%'</span>}, <span class="hljs-number">500</span>);
+            });
+        } <span class="hljs-keyword">else</span> {
+            icon.text(<span class="hljs-string">'perview'</span>);
+            tabs.animate({left:<span class="hljs-string">'0px'</span>}, <span class="hljs-number">500</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                perview.html(<span class="hljs-string">''</span>);
+            });
+        }
+    });
+});</code></pre>
+    </div>
+</div>
+
+{{> footer}}

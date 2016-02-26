@@ -1,7 +1,8 @@
 //DB
 // mongoose config
+var config = require('../config.json');
 var mongoose = require('mongoose'),
-    connectionURI = 'mongodb://192.168.99.100:27017/codesnippets',
+    connectionURI = 'mongodb://' + config.mongodb.host + ':' + config.mongodb.port + '/codesnippets',
     options = {
         server: {
             auto_reconnect: true,

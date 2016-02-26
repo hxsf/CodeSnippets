@@ -1,9 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var snippets = require('../database/snippets');
+// var snippets = require('../database/snippets');
 var hljs = require('highlight.js');
 var marked = require('marked');
+var qr = require('qr-encode');
 var renderer = new marked.Renderer();
+var randtoken = require('rand-token').generator({
+    chars: 'base32'
+});
+var cfg = require('../config.json');
+
+var Redis = require('ioredis');
+var redis = new Redis({
+    port: cfg.redis.port,
+    host: cfg.redis.host,
+    family: 4,
+    password: cfg.redis.auth,
+    db: 1
+});
+
+var getRandomToken = function(num, next) {
+    var temp = randtoken.generate(num);
+    redis.exists(temp, function(err, res) {
+        if (res == 1) {
+            getRandomToken(num+1, next);
+        } else {
+            next(null, temp);
+        }
+    });
+};
 
 marked.setOptions({
     renderer: renderer,
@@ -16,55 +41,77 @@ marked.setOptions({
     smartypants: false
 });
 
-var encodeHtml = function(s){
-    return (typeof s != "string") ? s :
-        s.replace( /"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
-                function($0){
-                    var c = $0.charCodeAt(0), r = ["&#"];
-                        c = (c == 0x20) ? 0xA0 : c;
-                        r.push(c); r.push(";");
-                        return r.join("");
-                    });
-  };
-
 renderer.html = function(html){
-
     return '';
 };
 
+// var jwt = require('jsonwebtoken');
+
+// var secretCallback = function(req, payload, done){
+//     var issuer = payload.iss;
+//     var secret = 'guest1011';
+//     done(null, secret);
+// };
+
 //debug code snippet.
-var hxsf = {name: "呼啸随风", _id: "123567890ABCDEF123567890ABCDEF"};
-// console.log(marked('I am using __markdown__.'));
+var guest = {name: "Guest", _id: "123567890ABCDEF123567890ABCDEF", guest: true};
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express','index': true, 'user': {} });
+    res.render('index', {'user': guest });
 });
-router.get('/home', function(req, res, next) {
-    res.render('index', { title: 'Express'});
-});
-router.get('/snippet/:title', function(req, res, next) {
-    // console.log(req.params);
-    snippets.findOne({"title": req.params.title}).populate("user").exec(function(err, docs) {
-        if(docs){
-            docs.remark = marked(docs.remark);
-            for (var i = 0; i < docs.codes.length; i++) {
-                docs.codes[i] = hljs.highlightAuto(docs.codes[i]).value;
-            }
-        }else{
-            docs = {"title": "未找到代码段"};
-        }
-        res.render('snippets', {"user": hxsf, "data": docs});
-    });
-});
-router.get('/snippets', function(req, res, next) {
-    res.render('snippets');
+// router.get('/auth', function(req, res, next) {
+//     var token = jwt.sign(guest, 'guest1011');
+//     res.cookie('token',token,{ maxAge: 2000000, path:'/'});
+//     // console.log(token);
+//     res.send(token);
+// });
+router.get('/demo', function(req, res, next) {
+    res.render('demo', {"user": guest});
 });
 router.get('/about', function(req, res, next) {
-    res.render('about');
+    res.render('about', {user: guest});
 });
 router.get('/new', function(req, res, next) {
-    res.render('new', {"user": hxsf});
+    res.render('new', {"user": guest});
+});
+var log = function(err, result) {
+    if (err) {
+        console.log('error', err);
+    } else {
+        console.log('success', result);
+    }
+};
+router.post('/new', function(req, res, next) {
+    var data = req.body;
+    if (typeof data.codes === 'string') {
+        data.codes = new Array(data.codes);
+    }
+    getRandomToken(8, function(err, token) {
+        redis.set(token, JSON.stringify(req.body), 'EX', 7 * 24 * 3600, log);
+        var url = cfg.baseUrl+'/t/'+ token;
+        res.render('success', {user: guest, token: token, url: url, src: qr(url, {type: 6, size: 6, level: 'Q'})});
+    });
+});
+router.get('/t/:key', function(req, res, next) {
+    redis.get(req.params.key, function(err, result) {
+        if (err) {
+            res.send('error');
+            console.log('error', err);
+        } else {
+            if (result) {
+                docs = JSON.parse(result);
+                docs.remark = marked(docs.remark);
+                for (var i = 0; i < docs.codes.length; i++) {
+                    docs.codes[i] = hljs.highlightAuto(docs.codes[i]).value;
+                }
+            } else {
+                docs = {"title": "未找到代码段"};
+            }
+            res.render('snippets', {"user": guest, "data": docs});
+        }
+    });
 });
 
 module.exports = router;

@@ -1,4 +1,4 @@
-<form action="/users/new" method="post">
+<form action="/new" method="post" class="new mainbody">
     <div class="snippets">
         {{#if user}}
         <div class="mdl-card title-card mdl-shadow--8dp">
@@ -24,11 +24,11 @@
                 </button>
             </div>
         </div>
-        <div class="mdl-card code-card mdl-shadow--8dp">
+        <div class="codes-card mdl-card code-card mdl-shadow--8dp">
             <!-- <pre><code class="hljs"></code></pre> -->
             <div class="code-item">
                 <div class="mdl-card__title mdl-card--expand mdl-card--border">
-                    <select class="mdl-card__title-text mdl-textfield__input" required="required">
+                    <select class="mdl-card__title-text mdl-textfield__input" name="lang" required="required">
                         <option value="option" selected="selected">Auto</option>
                         <option value="1c">1C</option>
                         <option value="accesslog">Access log</option>
@@ -210,57 +210,6 @@
         {{/if}}
     </div>
 </form>
-<style>
-    form > input {width: 500px;}
-    form > * {display: block;margin: 10px auto;}
-    .title-card h2 {width: calc(100% - 48px);}
-    #title {padding: 0px 3px;width: 100%;}
-    #title::-webkit-input-placeholder { /* WebKit browsers */
-        color: #ddd;
-    }
-    #title:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-        color: #ddd;
-    }
-    #title::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color: #ddd;
-    }
-    #title:-ms-input-placeholder { /* Internet Explorer 10+ */
-        color: #ddd;
-    }
-    .title-card > .mdl-card__menu {
-        top: 10px;
-    }
-    .code-card textarea {
-        width: 100%;
-        height: 200px;
-        margin: 0px auto;
-        padding: 15px;
-        resize: none;
-        font-family: monospace;
-        box-sizing: border-box;
-    }
-    #item-remark {
-        position: relative;
-        width: 100%!important;
-        padding: 0px!important;
-        height: 150px;
-    }
-    #item-remark > div.tabs {
-        overflow: hidden;
-        width: 200%;
-        position: relative;
-        /*left: -100%;*/
-    }
-    #item-remark > div.tabs > .tab-item {
-        float: left;
-        width: 50%;
-        min-height: 150px;
-        padding: 15px;
-        box-sizing: border-box;
-        resize: none;
-        overflow-y: auto;
-    }
-</style>
 
 {{> footer}}
 <script src="/javascripts/jquery-2.2.0.min.js" charset="utf-8"></script>
@@ -309,6 +258,7 @@
         });
         // add one more code snippet
         var _code = $('.code-item').clone();
+        _code.find('select').after('<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color--red mdl-color-text--white btn-remove" type="button" data-upgraded=",MaterialButton,MaterialRipple"><i class="material-icons">delete</i></button>');
         _code.find('textarea').val('');
         console.log(_code);
         var code_insert = $('#code-insert');
@@ -319,6 +269,9 @@
             } else {
                 alert('Can\'t add a snippet without content!');
             }
+        });
+        $('.codes-card').on('click', '.btn-remove', function () {
+            $(this).parents('.code-item').remove();
         });
     });
 </script>

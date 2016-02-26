@@ -1,0 +1,13 @@
+{
+    "baseUrl": "http://localhost:3000",
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "auth": null
+    },
+    "mongodb": {
+        "host": "127.0.0.1",
+        "port": 27017,
+        "auth": null
+    }
+}

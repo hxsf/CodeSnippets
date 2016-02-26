@@ -10,6 +10,7 @@ var Schema = mongoose.Schema;
 var userlistScheMa = new Schema({
     name: {type: String},
     uid: {type: String},
+    password: {type: String},
     //content  : {type : String},
     //time	 : {type : Date, default: Date.now},
     snippets: [{type: Schema.ObjectId, ref: 'sinppets'}]

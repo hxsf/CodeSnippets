@@ -1,3 +1,9 @@
+# other src dic
+others/
+
+# config
+config.json
+
 #node-dev configs
 .node-dev.json
 

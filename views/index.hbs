@@ -1,9 +1,85 @@
-<div class="android-content mdl-layout__content">
-    <a name="top"></a>
-    <div class="main" style="height: 100vh;">
-
+<div class="snippets mainbody">
+    <div class="mdl-card title-item mdl-shadow--8dp">
+        <div class="mdl-card__title mdl-color--blue">
+            <h2 class="mdl-card__title-text mdl-color-text--white">Here is Code Snippets</h2>
+        </div>
+        <div class="mdl-card__supporting-text markdown-body">
+            <h2 id="-">你好，欢迎访问代码段。</h2>
+            <h3>本站是为了更好的与他人分享代码段而生的。</h3>
+            <blockquote>
+                <p>Date: 2016-02-08
+                    <br>Author: hxsf@ihxsf.com</p>
+            </blockquote>
+            <h4>是否有过这样的烦恼：</h4>
+            <ol>
+                <li>QQ、微信 贴代码，格式尽毁。</li>
+                <li>传git repo费时费力，还会造成资源浪费。</li>
+                <li>截图发送，对方无法编辑/调试代码。</li>
+            </ol>
+            <h4>那么，代码段将是你的选择：</h4>
+            <ol>
+                <li>178种语法高亮支持。</li>
+                <li>粘贴，发送，省时省力。(无需注册)</li>
+                <li>临时代码段仅保留7天，登录用户可选持久存储。</li>
+            </ol>
+            <h4>未来的功能</h4>
+            <ul>
+                <li>评论/回复功能</li>
+                <li>从文件上传代码</li>
+                <li>收藏功能</li>
+            </ul>
+            <h4>导航</h4>
+            <ol>
+                <li><a href="/demo">查看demo</a></li>
+                <li><a href="/new">分享一个代码段</a></li>
+                <li><a href="https://github.com/hxsf/codesnippets/issues" target="_blank">给作者提建议</a></li>
+            </ol>
+            <h4 id="-google-material-design-">网站遵循Google的Material Design风格。</h4>
+        </div>
     </div>
+    <div class="mdl-card code-item mdl-shadow--8dp">
+        <pre><code class="hljs"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
 
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">() {</span>
+</span>
+    <span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>,b=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> n=<span class="hljs-number">1</span>; n&lt;<span class="hljs-number">101</span>; n++) {
+        a=n*n/<span class="hljs-number">100</span>;
+        b=n*n%<span class="hljs-number">100</span>;
+        <span class="hljs-keyword">if</span> (a%<span class="hljs-number">11</span>==<span class="hljs-number">0</span>&amp;&amp;(b%<span class="hljs-number">11</span>==<span class="hljs-number">0</span>)) {
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"num="</span>&lt;&lt;n*n;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+    </div>
+    <div class="mdl-card code-item mdl-shadow--8dp">
+        <pre><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/users/new"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span> <span class="hljs-attr">required</span>=<span class="hljs-string">"required"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"remark"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"80"</span> <span class="hljs-attr">resize</span>=<span class="hljs-string">"noresize"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"codes[]"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"80"</span> <span class="hljs-attr">resize</span>=<span class="hljs-string">"noresize"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"codes[]"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"80"</span> <span class="hljs-attr">resize</span>=<span class="hljs-string">"noresize"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"codes[]"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"80"</span> <span class="hljs-attr">resize</span>=<span class="hljs-string">"noresize"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"submit"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">media</span>=<span class="hljs-string">"screen"</span>&gt;</span><span class="css">
+    <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">input</span> {<span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;}
+    <span class="hljs-selector-tag">form</span> &gt; * {<span class="hljs-attribute">display</span>: block;<span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> auto;}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre>
+    </div>
+    <div class="mdl-card code-item mdl-shadow--8dp">
+        <pre><code class="hljs"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
+<span class="hljs-keyword">var</span> userlist = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../database/users'</span>);
+<span class="hljs-comment">// var userlist = db.userlist;</span>
 
-    {{> footer}}
+<span class="hljs-comment">/* GET users listing. */</span>
+router.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
+    res.send(<span class="hljs-string">'respond with a resource'</span>);
+});</code></pre>
+    </div>
 </div>
+{{> footer}}

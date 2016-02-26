@@ -1,0 +1,32 @@
+<div class="share mainbody">
+    <div class="title-item">
+        <h2>发布成功！</h2>
+        {{#if user.guest}}
+        <h4>访客提交的代码段默认保存7天，如需长期保存，请<a href="/reg">注册</a></h4>
+        {{/if}}
+    </div>
+
+    <div class="link-item">
+        <h5>方法1: 复制网址，发给朋友...</h5>
+        <input type="text" id="share-link" readonly="readonly" value="{{url}}" onclick="this.select()" ／>
+        <a href="/t/{{token}}" target="_blank">点击访问</a>
+    </div>
+    <div class="qrcode-item">
+        <h5>方法2: 分享二维码给朋友</h5>
+        <img src="{{src}}" id="share-qrcode" alt="{{url}}" />
+    </div>
+</div>
+{{> footer}}
+<script type="text/javascript">
+    var selectText = function(e) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(e);
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(e);
+            window.getSelection().addRange(range);
+        }
+    };
+</script>
