@@ -1,0 +1,14 @@
+version: "2"
+services:
+    mongo:
+        image: mongo:3.4.9
+        ports:
+            - "127.0.0.1:27117:27017"
+        volumes:
+            - ./data/mongo:/data/db:Z
+        restart: always
+    redis:
+        image: redis
+        ports:
+            - "127.0.0.1:6479:6379"
+

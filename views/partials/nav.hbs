@@ -24,14 +24,15 @@
         </form>
         {{#if user}}
         <span class="header-username" style="margin-left: 20px;">{{user.name}}</span>
-        <button id="menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+        <!-- <button id="menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
             <i class="material-icons">more_vert</i>
-        </button>
+        </button> -->
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-lower-right">
             <li class="mdl-menu__item mdl-show--phone">Home</li>
             <li class="mdl-menu__item mdl-show--phone"><a href="/demo">Demo</a></li>
             <li class="mdl-menu__item mdl-show--phone"><a href="/new">New snippet</a></li>
             <li class="mdl-menu__item mdl-show--phone">About</li>
+            <!-- 
             {{#if user.guest}}
             <li class="mdl-menu__item"><a href="/login">Login</a></li>
             {{else}}
@@ -39,6 +40,7 @@
             <li class="mdl-menu__item">Personal Center</li>
             <li class="mdl-menu__item"><a href="/logout">Log out</a></li>
             {{/if}}
+            -->
         </ul>
         {{/if}}
     </div>

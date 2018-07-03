@@ -6,7 +6,8 @@ var marked = require('marked');
 var qr = require('qr-encode');
 var renderer = new marked.Renderer();
 var randtoken = require('rand-token').generator({
-    chars: 'base32'
+    source: 'crypto',
+    chars: 'base32',
 });
 var cfg = require('../config.json');
 
@@ -18,6 +19,8 @@ var redis = new Redis({
     password: cfg.redis.auth,
     db: 1
 });
+
+
 
 var getRandomToken = function(num, next) {
     var temp = randtoken.generate(num);
@@ -90,7 +93,8 @@ router.post('/new', function(req, res, next) {
     }
     getRandomToken(8, function(err, token) {
         redis.set(token, JSON.stringify(req.body), 'EX', 7 * 24 * 3600, log);
-        var url = cfg.baseUrl+'/t/'+ token;
+        const baseUrl = req.get('Origin')
+        var url = baseUrl+'/t/'+ token;
         res.render('success', {user: guest, token: token, url: url, src: qr(url, {type: 6, size: 6, level: 'Q'})});
     });
 });
